@@ -21,6 +21,8 @@
 		84E8040D24BB75EC008E48A4 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8040C24BB75EC008E48A4 /* TableViewController.swift */; };
 		84E8040F24BB75FD008E48A4 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8040E24BB75FD008E48A4 /* CollectionViewController.swift */; };
 		84E8041124BB76BB008E48A4 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8041024BB76BB008E48A4 /* RootViewController.swift */; };
+		84E8041424BC6997008E48A4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8041324BC6997008E48A4 /* TableViewCell.swift */; };
+		84E8041624BC69B1008E48A4 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E8041524BC69B0008E48A4 /* TableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		84E8040C24BB75EC008E48A4 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		84E8040E24BB75FD008E48A4 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		84E8041024BB76BB008E48A4 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		84E8041324BC6997008E48A4 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		84E8041524BC69B0008E48A4 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 		84E803E724BB7484008E48A4 /* TestProject */ = {
 			isa = PBXGroup;
 			children = (
+				84E8041224BC697D008E48A4 /* Views */,
 				84E803FF24BB757E008E48A4 /* Network */,
 				84E803FE24BB7562008E48A4 /* Extensions */,
 				84E803FD24BB754C008E48A4 /* Controllers */,
@@ -121,6 +126,15 @@
 				84E8040424BB75AA008E48A4 /* Person.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		84E8041224BC697D008E48A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84E8041524BC69B0008E48A4 /* TableViewCell.xib */,
+				84E8041324BC6997008E48A4 /* TableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84E803F524BB7489008E48A4 /* LaunchScreen.storyboard in Resources */,
+				84E8041624BC69B1008E48A4 /* TableViewCell.xib in Resources */,
 				84E803F224BB7489008E48A4 /* Assets.xcassets in Resources */,
 				84E803F024BB7484008E48A4 /* Main.storyboard in Resources */,
 			);
@@ -203,6 +218,7 @@
 				84E803E924BB7484008E48A4 /* AppDelegate.swift in Sources */,
 				84E8040124BB7591008E48A4 /* APIClient.swift in Sources */,
 				84E8040324BB75A0008E48A4 /* ResponseError.swift in Sources */,
+				84E8041424BC6997008E48A4 /* TableViewCell.swift in Sources */,
 				84E8040D24BB75EC008E48A4 /* TableViewController.swift in Sources */,
 				84E8040924BB75CF008E48A4 /* NotificationName+Ex.swift in Sources */,
 			);
