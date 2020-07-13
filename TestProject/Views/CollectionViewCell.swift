@@ -1,17 +1,21 @@
 //
-//  TableViewCell.swift
+//  CollectionViewCell.swift
 //  TestProject
 //
 //  Created by Admin on 13/07/2020.
 //  Copyright © 2020 Admin. All rights reserved.
 //
 
+
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class CollectionViewCell: UICollectionViewCell {
+    
     
     @IBOutlet weak var nameLabel: UILabel!
+    
     @IBOutlet weak var ageLabel: UILabel!
+    
     @IBOutlet weak var genderLabel: UILabel!
     
     static func nib() -> UINib {
@@ -26,9 +30,5 @@ class TableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 }

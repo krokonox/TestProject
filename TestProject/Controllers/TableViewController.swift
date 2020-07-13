@@ -12,11 +12,15 @@ class TableViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var data: [Person] = []
+    private var data: [Person] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     private func configureTableView() {
         self.tableView.register(TableViewCell.nib(),
-                                forCellReuseIdentifier: TableViewCell.identifier)
+                                forCellReuseIdentifier: TableViewCell.reuseIdentifier)
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
@@ -24,6 +28,7 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidFilterData(_:)), name: .didApplyFilter, object: nil)
         self.configureTableView()
     }
     
@@ -32,6 +37,16 @@ class TableViewController: UIViewController {
             self.data = data
         }
     }
+    @objc func onDidFilterData(_ notification: Notification) {
+        if let parameters = notification.userInfo?["data"] as? [String : String] {
+            self.data = Helper.filterData(with: data, parameters: parameters)
+           }
+       }
+    
+    @IBAction func buttonClicked(_ sender: Any) {
+      //  self.pushViewController(FilterViewController(), animated: true)
+    }
+    
 }
 
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -41,11 +56,11 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let person = data[indexPath.row]
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier)
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier)
         
         if let cell = cell as? TableViewCell {
             cell.configure(with: person.last_name,
-                           age: person.dateOfBirtdh,
+                           age: String(person.age),
                            gender: person.gender)
             return cell
         }
