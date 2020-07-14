@@ -40,6 +40,7 @@ class TableViewController: UIViewController {
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
+        print("table")
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onDidFilterData(_:)), name: .didApplyFilter, object: nil)
@@ -103,6 +104,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = PersonDetailViewController()
         vc.configure(with: data[indexPath.row])
+        print(data[indexPath.row])
         self.show(vc, sender: self)
     }
 }

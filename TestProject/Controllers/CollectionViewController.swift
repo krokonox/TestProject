@@ -57,11 +57,13 @@ class CollectionViewController: UIViewController {
         }
     }
     
-    @objc func onDidReceiveData(_ notification: Notification) {
-        if let data = notification.userInfo?["data"] as? [Person] {
-            self.data = data
-        }
-    }
+     @objc func onDidReceiveData(_ notification: Notification) {
+          if let data = notification.userInfo?["data"] as? [Person] {
+              self.data = data
+              print(data.count)
+          }
+      }
+    
     @objc func onDidFilterData(_ notification: Notification) {
         if let parameters = notification.userInfo?["details"] as? [String : String] {
             self.data = Helper.filterData(with: data, parameters: parameters)
@@ -81,8 +83,9 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath)
         
         if let cell = cell as? CollectionViewCell {
+            print("gfgf")
             cell.configure(with: person.last_name,
-                           age: person.dateOfBirtdh,
+                           age: String(person.age),
                            gender: person.gender)
             return cell
         }
