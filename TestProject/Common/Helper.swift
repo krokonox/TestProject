@@ -16,20 +16,24 @@ class Helper {
         let birthdayDate = dateFormater.date(from: birthday)
         let calendar: NSCalendar! = NSCalendar(calendarIdentifier: .gregorian)
         let now = Date()
-        let calcAge = calendar.components(.year, from: birthdayDate!, to: now, options: [])
+        guard let birthday = birthdayDate else { return 0 }
+        let calcAge = calendar.components(.year, from: birthday, to: now, options: [])
         let age = calcAge.year ?? 0
         return age
     }
     
     static func filterData(with data: [Person], parameters: [String : String]) -> [Person] {
+        var arr: [Person] = []
+        print(arr.count)
         if parameters["gender"] == "Female" || parameters["gender"] == "Male"{
-            data.filter {$0.gender == parameters["gender"]}
+            arr.append(contentsOf: data.filter{$0.gender == parameters["gender"]})
         }
         if parameters["age"] == "desc" {
-            data.sorted(by: { $0.age > $1.age })
+            arr.append(contentsOf: data.sorted(by: { $0.age > $1.age }))
         } else {
-            data.sorted(by: { $0.age < $1.age })
+            arr.append(contentsOf: data.sorted(by: { $0.age < $1.age }))
         }
-        return data
+        print(arr.count)
+        return arr
     }
 }

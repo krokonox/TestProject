@@ -19,15 +19,17 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func buttonClicked(_ sender: Any) {
-        var data = ["age" : "desc", "gender" : "male"]
+        var data = ["age" : "desc", "gender" : "Male"]
         if ageSwitch.isOn {
             data["age"] = "asc"
         }
         if genderSwitch.isOn {
-            data["gender"] = "female"
+            data["gender"] = "Female"
         }
-        
-        NotificationCenter.default.post(name: .didApplyFilter, object: nil, userInfo: data)
+      
+        self.dismiss(animated: true) {
+            NotificationCenter.default.post(name: .didApplyFilter, object: nil, userInfo: ["details" : data])
+        }
     }
 }
 
