@@ -31,6 +31,7 @@ class CollectionViewController: UIViewController {
     }()
     
     private func configureCollectionView() {
+        self.collectionView.addSubview(refreshControl)
         self.collectionView.register(CollectionViewCell.nib(), forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -60,7 +61,6 @@ class CollectionViewController: UIViewController {
      @objc func onDidReceiveData(_ notification: Notification) {
           if let data = notification.userInfo?["data"] as? [Person] {
               self.data = data
-              print(data.count)
           }
       }
     
@@ -73,7 +73,7 @@ class CollectionViewController: UIViewController {
 
 // MARK: - TableView Extension
 
-extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
@@ -83,7 +83,6 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath)
         
         if let cell = cell as? CollectionViewCell {
-            print("gfgf")
             cell.configure(with: person.last_name,
                            age: String(person.age),
                            gender: person.gender)
@@ -92,4 +91,16 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         
         return UICollectionViewCell()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "PersonDetailViewController") as! PersonDetailViewController
+        _ = viewController.view
+        
+        viewController.configure(with: data[indexPath.row])
+        self.show(viewController, sender: self)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width, height: 100)
+       }
 }

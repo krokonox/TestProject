@@ -19,7 +19,6 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var genderLabel: UILabel!
     
     static func nib() -> UINib {
-        print("nib")
         return UINib(nibName: self.reuseIdentifier, bundle: nil)
     }
     

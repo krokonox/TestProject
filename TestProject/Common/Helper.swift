@@ -24,16 +24,16 @@ class Helper {
     
     static func filterData(with data: [Person], parameters: [String : String]) -> [Person] {
         var arr: [Person] = []
-        print(arr.count)
+        
         if parameters["gender"] == "Female" || parameters["gender"] == "Male"{
             arr.append(contentsOf: data.filter{$0.gender == parameters["gender"]})
         }
         if parameters["age"] == "desc" {
-            arr.append(contentsOf: data.sorted(by: { $0.age > $1.age }))
+            arr = arr.sorted(by: { $0.age > $1.age })
         } else {
-            arr.append(contentsOf: data.sorted(by: { $0.age < $1.age }))
+            arr = arr.sorted(by: { $0.age < $1.age })
         }
-        print(arr.count)
+        
         return arr
     }
 }

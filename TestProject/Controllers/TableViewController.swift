@@ -31,6 +31,7 @@ class TableViewController: UIViewController {
     }()
     
     private func configureTableView() {
+        self.tableView.addSubview(refreshControl)
         self.tableView.register(TableViewCell.nib(),
                                 forCellReuseIdentifier: TableViewCell.reuseIdentifier)
         self.tableView.delegate = self
@@ -40,7 +41,6 @@ class TableViewController: UIViewController {
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
-        print("table")
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onDidFilterData(_:)), name: .didApplyFilter, object: nil)
@@ -70,10 +70,6 @@ class TableViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func buttonClicked(_ sender: Any) {
-        //  self.pushViewController(FilterViewController(), animated: true)
-    }
 }
 
 // MARK: - TableView Extension
@@ -86,8 +82,8 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let person = data[indexPath.row]
         let cell = self.tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier)
-        
         if let cell = cell as? TableViewCell {
+            cell.selectionStyle = .none
             cell.configure(with: person.last_name,
                            age: String(person.age),
                            gender: person.gender)
@@ -102,9 +98,10 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = PersonDetailViewController()
-        vc.configure(with: data[indexPath.row])
-        print(data[indexPath.row])
-        self.show(vc, sender: self)
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: "PersonDetailViewController") as! PersonDetailViewController
+        _ = viewController.view
+        
+        viewController.configure(with: data[indexPath.row])
+        self.show(viewController, sender: self)
     }
 }

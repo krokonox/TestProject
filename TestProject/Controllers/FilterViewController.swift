@@ -19,9 +19,9 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func buttonClicked(_ sender: Any) {
-        var data = ["age" : "desc", "gender" : "Male"]
+        var data = ["age" : "asc", "gender" : "Male"]
         if ageSwitch.isOn {
-            data["age"] = "asc"
+            data["age"] = "desc"
         }
         if genderSwitch.isOn {
             data["gender"] = "Female"
