@@ -29,6 +29,8 @@
 		84E8041E24BCB6C9008E48A4 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8041D24BCB6C9008E48A4 /* Helper.swift */; };
 		84E8042024BCBE69008E48A4 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8041F24BCBE69008E48A4 /* String+Ex.swift */; };
 		84E8042224BD76F3008E48A4 /* PersonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8042124BD76F3008E48A4 /* PersonDetailViewController.swift */; };
+		84E8042424BF0CAE008E48A4 /* FillterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8042324BF0CAE008E48A4 /* FillterViewController.swift */; };
+		84E8042624BF2D5A008E48A4 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E8042524BF2D5A008E48A4 /* RoundButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		84E8041D24BCB6C9008E48A4 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		84E8041F24BCBE69008E48A4 /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
 		84E8042124BD76F3008E48A4 /* PersonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailViewController.swift; sourceTree = "<group>"; };
+		84E8042324BF0CAE008E48A4 /* FillterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillterViewController.swift; sourceTree = "<group>"; };
+		84E8042524BF2D5A008E48A4 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				84E8041D24BCB6C9008E48A4 /* Helper.swift */,
+				84E8042524BF2D5A008E48A4 /* RoundButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 				84E8040E24BB75FD008E48A4 /* CollectionViewController.swift */,
 				84E8041024BB76BB008E48A4 /* RootViewController.swift */,
 				84E8042124BD76F3008E48A4 /* PersonDetailViewController.swift */,
+				84E8042324BF0CAE008E48A4 /* FillterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -232,6 +238,7 @@
 				84E8040B24BB75DF008E48A4 /* TabBarController.swift in Sources */,
 				84E8041E24BCB6C9008E48A4 /* Helper.swift in Sources */,
 				84E8040724BB75BB008E48A4 /* UIViewController+Ex.swift in Sources */,
+				84E8042624BF2D5A008E48A4 /* RoundButton.swift in Sources */,
 				84E8041124BB76BB008E48A4 /* RootViewController.swift in Sources */,
 				84E803ED24BB7484008E48A4 /* FilterViewController.swift in Sources */,
 				84E8040F24BB75FD008E48A4 /* CollectionViewController.swift in Sources */,
@@ -243,6 +250,7 @@
 				84E8042224BD76F3008E48A4 /* PersonDetailViewController.swift in Sources */,
 				84E8040324BB75A0008E48A4 /* ResponseError.swift in Sources */,
 				84E8041424BC6997008E48A4 /* TableViewCell.swift in Sources */,
+				84E8042424BF0CAE008E48A4 /* FillterViewController.swift in Sources */,
 				84E8040D24BB75EC008E48A4 /* TableViewController.swift in Sources */,
 				84E8040924BB75CF008E48A4 /* NotificationName+Ex.swift in Sources */,
 			);

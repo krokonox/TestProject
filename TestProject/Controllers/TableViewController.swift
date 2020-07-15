@@ -16,6 +16,7 @@ class TableViewController: UIViewController {
     
     private var data: [Person] = [] {
         didSet {
+            print(data)
             self.tableView.reloadData()
         }
     }
@@ -50,6 +51,7 @@ class TableViewController: UIViewController {
     // MARK: - Functions
     
     @objc func onDidReceiveData(_ notification: Notification) {
+        print("receive")
         if let data = notification.userInfo?["data"] as? [Person] {
             self.data = data
         }

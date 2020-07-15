@@ -17,13 +17,27 @@ class TabBarController: UITabBarController {
                                             userInfo: ["data" : data])
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for viewController in self.viewControllers! {
-            _ = viewController.view
-        }
+        let tableVC = self.storyboard!.instantiateViewController(withIdentifier: "TableViewController") as! TableViewController
+        _ = tableVC.view
+        let collectionVC = self.storyboard!.instantiateViewController(withIdentifier: "CollectionViewController") as! CollectionViewController
+        _ = collectionVC.view
+        
+        let tableController = self.createNavigationController(tableVC, title: "tableIcon")
+        let collectionController = self.createNavigationController(collectionVC, title: "collectionIcon")
+        
+        self.viewControllers = [tableController, collectionController]
+        
+    }
+    
+    private func createNavigationController(_ viewController: UIViewController, title: String) -> UINavigationController {
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = UIImage(named: title)
+        return navController
     }
     
     func setData(data: [Person]) {
