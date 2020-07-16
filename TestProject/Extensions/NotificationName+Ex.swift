@@ -10,6 +10,6 @@ import Foundation
 
 extension Notification.Name {
     static let didReceiveData = Notification.Name("didReceiveData")
-    static let didCompleteTask = Notification.Name("didCompleteTask")
+    static let didResetFilter = Notification.Name("didResetFilter")
     static let didApplyFilter = Notification.Name("didApplyFilter")
 }

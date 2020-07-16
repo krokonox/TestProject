@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FillterViewController: UIViewController {
+class FilterViewController: UIViewController {
 
     private var age: String = ""
     private var gender: String = ""
@@ -35,8 +35,7 @@ class FillterViewController: UIViewController {
     }
     
     @IBAction func resetAllButtonClicked(_ sender: Any) {
-        self.age = ""
-        self.gender = ""
+        NotificationCenter.default.post(name: .didResetFilter, object: nil, userInfo: nil)
     }
     
     @IBAction func applyButtonClicked(_ sender: Any) {

@@ -16,6 +16,12 @@ class CollectionViewController: UIViewController {
     
     private var data: [Person] = [] {
         didSet {
+            //self.collectionView.reloadData()
+        }
+    }
+    
+    private var filteredData: [Person] = [] {
+        didSet {
             self.collectionView.reloadData()
         }
     }
@@ -41,12 +47,17 @@ class CollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onDidFilterData(_:)), name: .didApplyFilter, object: nil)
+        self.registerObserver()
         self.configureCollectionView()
     }
     
     // MARK: - Functions
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidFilterData(_:)), name: .didApplyFilter, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidResetFilter(_:)), name: .didResetFilter, object: nil)
+    }
     
     @objc func refresh(sender: AnyObject) {
         APIClient.sh.request() { [weak self] (data: [Person]?, error) in
@@ -60,14 +71,19 @@ class CollectionViewController: UIViewController {
     
      @objc func onDidReceiveData(_ notification: Notification) {
           if let data = notification.userInfo?["data"] as? [Person] {
-              self.data = data
+            self.data = data
+            self.filteredData = self.data
           }
       }
     
     @objc func onDidFilterData(_ notification: Notification) {
         if let parameters = notification.userInfo?["details"] as? [String : String] {
-            self.data = Helper.filterData(with: data, parameters: parameters)
+            self.filteredData = Helper.filterData(with: data, parameters: parameters)
         }
+    }
+    
+    @objc func onDidResetFilter(_ notification: Notification) {
+        self.filteredData = self.data
     }
 }
 
@@ -75,11 +91,11 @@ class CollectionViewController: UIViewController {
 
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return filteredData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let person = data[indexPath.row]
+        let person = filteredData[indexPath.row]
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath)
         
         if let cell = cell as? CollectionViewCell {

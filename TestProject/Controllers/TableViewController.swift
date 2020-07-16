@@ -16,7 +16,12 @@ class TableViewController: UIViewController {
     
     private var data: [Person] = [] {
         didSet {
-            print(data)
+           // self.tableView.reloadData()
+        }
+    }
+        
+    private var filteredData: [Person] = [] {
+        didSet {
             self.tableView.reloadData()
         }
     }
@@ -43,24 +48,33 @@ class TableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onDidFilterData(_:)), name: .didApplyFilter, object: nil)
+        self.registerObserver()
         self.configureTableView()
     }
     
     // MARK: - Functions
     
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidFilterData(_:)), name: .didApplyFilter, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidResetFilter(_:)), name: .didResetFilter, object: nil)
+    }
+    
     @objc func onDidReceiveData(_ notification: Notification) {
-        print("receive")
         if let data = notification.userInfo?["data"] as? [Person] {
             self.data = data
+            self.filteredData = self.data
         }
     }
     
     @objc func onDidFilterData(_ notification: Notification) {
         if let parameters = notification.userInfo?["details"] as? [String : String] {
-            self.data = Helper.filterData(with: data, parameters: parameters)
+            self.filteredData = Helper.filterData(with: filteredData, parameters: parameters)
         }
+    }
+    
+    @objc func onDidResetFilter(_ notification: Notification) {
+        self.filteredData = data
     }
     
     @objc func refresh(sender: AnyObject) {
@@ -78,11 +92,11 @@ class TableViewController: UIViewController {
 
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return filteredData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let person = data[indexPath.row]
+        let person = filteredData[indexPath.row]
         let cell = self.tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier)
         if let cell = cell as? TableViewCell {
             cell.selectionStyle = .none
