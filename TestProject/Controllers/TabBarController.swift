@@ -26,8 +26,8 @@ class TabBarController: UITabBarController {
         let collectionVC = self.storyboard!.instantiateViewController(withIdentifier: "CollectionViewController") as! CollectionViewController
         _ = collectionVC.view
         
-        let tableController = self.createNavigationController(tableVC, title: "tableIcon")
-        let collectionController = self.createNavigationController(collectionVC, title: "collectionIcon")
+        let tableController = self.createNavigationController(tableVC, title: "table")
+        let collectionController = self.createNavigationController(collectionVC, title: "collection")
         
         self.viewControllers = [tableController, collectionController]
         

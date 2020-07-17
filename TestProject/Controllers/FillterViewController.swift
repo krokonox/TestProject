@@ -13,25 +13,44 @@ class FilterViewController: UIViewController {
     private var age: String = ""
     private var gender: String = ""
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    // MARK: - IB Functions
     
-    @IBAction func ascButtonClicked(_ sender: Any) {
-        self.age = "asc"
+    @IBAction func ascButtonClicked(_ sender: UIButton) {
+        if sender.isSelected {
+            self.age = "asc"
+        } else {
+            self.age = ""
+        }
     }
     
-    @IBAction func descButtonClicked(_ sender: Any) {
-        self.age = "desc"
+    @IBAction func descButtonClicked(_ sender: UIButton) {
+        if sender.isSelected {
+            self.age = "desc"
+        } else {
+            self.age = ""
+        }
     }
     
-    @IBAction func femaleButtonClicked(_ sender: Any) {
-        self.gender = "Female"
+    @IBAction func femaleButtonClicked(_ sender: UIButton) {
+        if sender.isSelected {
+            self.gender = "Female"
+        } else {
+            self.gender = ""
+        }
     }
     
-    @IBAction func maleButtonClicked(_ sender: Any) {
-        self.gender = "Male"
+    @IBAction func maleButtonClicked(_ sender: UIButton) {
+        if sender.isSelected {
+            self.gender = "Male"
+        } else {
+            self.gender = ""
+        }
     }
     
     @IBAction func resetAllButtonClicked(_ sender: Any) {
